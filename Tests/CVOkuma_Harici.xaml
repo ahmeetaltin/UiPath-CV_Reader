@@ -1,0 +1,499 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CVOkumaHarici" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_dt_patterns_HariciCv" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="out_str_AdSoyad" Type="OutArgument(x:String)" />
+    <x:Property Name="out_str_Email" Type="OutArgument(x:String)" />
+    <x:Property Name="out_str_TelefonNo" Type="OutArgument(x:String)" />
+    <x:Property Name="out_str_DogumTarihi" Type="OutArgument(x:String)" />
+    <x:Property Name="in_str_OzgecmisIcerik" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_DosyaAdresi" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:CVOkumaHarici.in_dt_patterns_HariciCv>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:CVOkumaHarici.in_dt_patterns_HariciCv>
+  <this:CVOkumaHarici.in_str_OzgecmisIcerik>
+    <InArgument x:TypeArguments="x:String" />
+  </this:CVOkumaHarici.in_str_OzgecmisIcerik>
+  <sap:VirtualizedContainerService.HintSize>985.6,2745.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="31">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>Microsoft.VisualBasic.FileIO</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CVOkuma_Harici" sap:VirtualizedContainerService.HintSize="996,2680.8" sap2010:WorkflowViewState.IdRef="Sequence_77">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="strList_patterns_TelefonPatterns" />
+      <Variable x:TypeArguments="x:String" Name="str_WorkflowName" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="strList_patterns_MailPatterns" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="strList_patterns_DogumTarihiPatterns" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Sequence : Initialization" sap:VirtualizedContainerService.HintSize="954.4,394.4" sap2010:WorkflowViewState.IdRef="Sequence_134">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign : str_WorkflowName" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_122">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[str_WorkflowName]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">CVOkumaHarici -&gt; </InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[str_WorkflowName+&quot;Workflow başladı.&quot;]" />
+      <Sequence DisplayName="Sequence : Gerekli değişkenleri oluştur ve elde et." sap:VirtualizedContainerService.HintSize="333.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_135">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[str_WorkflowName+&quot;Gerekli değişkenler atanıyor...&quot;]" />
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="333.6,255.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="32">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_str_Email]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_str_DogumTarihi]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_str_TelefonNo]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[strList_patterns_MailPatterns]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[in_dt_patterns_HariciCv.AsEnumerable.Select(Function (x) x.item("Email").ToString()).ToList().Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToList()]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[strList_patterns_TelefonPatterns]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[in_dt_patterns_HariciCv.AsEnumerable.Select(Function (x) x.item("Telefon").ToString()).ToList().Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToList]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[strList_patterns_DogumTarihiPatterns]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[in_dt_patterns_HariciCv.AsEnumerable.Select(Function (x) x.item("DogumTarihi").ToString()).ToList().Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToList()]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:MultipleAssign>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[str_WorkflowName+&quot;Gerekli değişkenler atandı.&quot;]" />
+      </Sequence>
+    </Sequence>
+    <Sequence DisplayName="Sequence : Perform" sap:VirtualizedContainerService.HintSize="954.4,1928" sap2010:WorkflowViewState.IdRef="Sequence_208">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="912.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[str_WorkflowName+&quot;Perform sequence başladı.&quot;]" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="912.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_42">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="566.4,520" sap2010:WorkflowViewState.IdRef="Sequence_260">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Sequence : Belge kariyer.net belgesi mi kontrolünü yap." sap:VirtualizedContainerService.HintSize="524.8,427.2" sap2010:WorkflowViewState.IdRef="Sequence_257">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="IsExist_regex_BuBelge" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:IsMatch BuilderPattern="^(\bBu belge\b)(\w|\s|\:|\.)+(oluşturulmuştur.)" DisplayName="Is Match Bu belge Renaissance yazısı içeriyor mu" sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="IsMatch_45" Input="[in_str_OzgecmisIcerik]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;^(\\bBu belge\\b)(\\w|\\s|\\:|\\.)+(oluşturulmuştur.)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^(\bBu belge\b)(\w|\s|\:|\.)+(oluşturulmuştur.)" RegexOption="IgnoreCase, Multiline" Result="[IsExist_regex_BuBelge]" />
+              <If Condition="[IsExist_regex_BuBelge]" DisplayName="If : Belge kariyer.net tarafında mı oluşturulmuş?" sap:VirtualizedContainerService.HintSize="483.2,234.4" sap2010:WorkflowViewState.IdRef="If_87">
+                <If.Then>
+                  <Sequence DisplayName="Sequence : Belge kariyer.net belgesi." sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_259">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Sequence : Belge kariyer.net harici bir belge." sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_258">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <Sequence DisplayName="Sequence : Ad soyad bilgisini dosya adından elde et." sap:VirtualizedContainerService.HintSize="912.8,68.8" sap2010:WorkflowViewState.IdRef="Sequence_261">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_107" Level="Info" Message="[str_WorkflowName+&quot;HariciCv için adayın ad soyad bilgisi dosya adından tespit ediliyor...&quot;]" />
+        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_248">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[out_str_AdSoyad]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[FileIO.FileSystem.GetName(in_str_DosyaAdresi).ToString.Replace(".pdf","").Replace(".docx","").Replace(".doc","")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_108" Level="Info" Message="[str_WorkflowName+&quot;Adayın ad soyad bilgisi '&quot;+out_str_AdSoyad+&quot;' olarak tespit edildi.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="Sequence : Mail bilgisini özgeçmişten çıkar." sap:VirtualizedContainerService.HintSize="912.8,68.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="871.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_109" Level="Info" Message="[str_WorkflowName+&quot;Özgeçmişten mail bilgisi elde edilmeye çalışılıyor...&quot;]" />
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each : strList_patterns_MailPatterns" sap:VirtualizedContainerService.HintSize="871.2,824.8" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[strList_patterns_MailPatterns]">
+          <ui:ForEach.Body>
+            <ActivityAction x:TypeArguments="x:String">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:String" Name="MailPattern" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body : Pattern ile maili elde etmeye çalış." sap:VirtualizedContainerService.HintSize="836,690.4" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="isMailRegex" />
+                  <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="collection_Match_Mail" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Matches BuilderPattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" DisplayName="Matches Mail Regex" sap:VirtualizedContainerService.HintSize="794.4,60" sap2010:WorkflowViewState.IdRef="Matches_5" Input="[in_str_OzgecmisIcerik]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;((?&gt;[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+\\x20*|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;\\x20*)*(?&lt;angle&gt;&lt;))?((?!\\.)(?&gt;\\.?[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+)+|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;)@(((?!-)[a-zA-Z\\d\\-]+(?&lt;!-)\\.)+[a-zA-Z]{2,}|\\[(((?(?&lt;!\\[)\\.)(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)){4}|[a-zA-Z\\d\\-]*[a-zA-Z\\d]:((?=[\\x01-\\x7f])[^\\\\\\[\\]]|\\\\[\\x01-\\x7f])+)\\])(?(angle)&gt;)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[MailPattern]" RegexOption="IgnoreCase" Result="[collection_Match_Mail]" />
+                <If Condition="[collection_Match_Mail.Any]" DisplayName="If : Mail eşleşmesi bulundu mu?" sap:VirtualizedContainerService.HintSize="794.4,497.6" sap2010:WorkflowViewState.IdRef="If_88">
+                  <If.Then>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan mail bulundu." sap:VirtualizedContainerService.HintSize="375.2,348" sap2010:WorkflowViewState.IdRef="Sequence_262">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign : str_Email" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[out_str_Email]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[collection_Match_Mail(0).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_99" Level="Info" Message="[str_WorkflowName+&quot;Mail bilgisi '&quot;+out_str_Email+&quot;' olarak tespit edildi.&quot;]" />
+                      <ui:Break sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Break_9" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan mail bulunamadı." sap:VirtualizedContainerService.HintSize="375.2,185.6" sap2010:WorkflowViewState.IdRef="Sequence_263">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_110" Level="Info" Message="[str_WorkflowName+&quot;Mail pattern eşleşmedi.&quot;]" />
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEach.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:ForEach>
+      </Sequence>
+      <Sequence DisplayName="Sequence : Telefon bilgisini özgeçmişten çıkar." sap:VirtualizedContainerService.HintSize="912.8,1150.4" sap2010:WorkflowViewState.IdRef="Sequence_254">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="scg:List(x:String)" Name="strListYabanciDil" />
+          <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="collection_Match_Telefon" />
+          <Variable x:TypeArguments="x:String" Name="in_str_OzgecmisIcerik_Telefon" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="871.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_111" Level="Info" Message="[str_WorkflowName+&quot;Özgeçmişten telefon bilgisi elde edilmeye çalışılıyor...&quot;]" />
+        <Assign sap:VirtualizedContainerService.HintSize="871.2,60" sap2010:WorkflowViewState.IdRef="Assign_252">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[in_str_OzgecmisIcerik_Telefon]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_str_OzgecmisIcerik.Replace("+9","").Replace("-","").Replace(" ","").Replace("+","").Replace("(","").Replace(")","").Replace("+","").Replace("+ 9","")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each : strList_patterns_TelefonPatterns" sap:VirtualizedContainerService.HintSize="871.2,824.8" sap2010:WorkflowViewState.IdRef="ForEach`1_62" Values="[strList_patterns_TelefonPatterns]">
+          <ui:ForEach.Body>
+            <ActivityAction x:TypeArguments="x:String">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:String" Name="TelefonPattern" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body : Pattern ile telefonu elde etmeye çalış." sap:VirtualizedContainerService.HintSize="836,690.4" sap2010:WorkflowViewState.IdRef="Sequence_253">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="isYabanciDilRegex" />
+                  <Variable x:TypeArguments="x:Boolean" Name="isTelefonRegex" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Matches BuilderPattern="(05|5)([0-9]{9}|[0-9]{10})" DisplayName="Matches Telefon Regex" sap:VirtualizedContainerService.HintSize="794.4,60" sap2010:WorkflowViewState.IdRef="Matches_47" Input="[in_str_OzgecmisIcerik_Telefon]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(05|5)([0-9]{9}|[0-9]{10})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(05|5)([0-9]{9}|[0-9]{10})" RegexOption="IgnoreCase" Result="[collection_Match_Telefon]" />
+                <If Condition="[collection_Match_Telefon.Any]" DisplayName="If : Telefon eşleşmesi bulundu mu?" sap:VirtualizedContainerService.HintSize="794.4,497.6" sap2010:WorkflowViewState.IdRef="If_90">
+                  <If.Then>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan telefon numarası bulundu." sap:VirtualizedContainerService.HintSize="375.2,348" sap2010:WorkflowViewState.IdRef="Sequence_264">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign : str_TelefonNo" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_249">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[out_str_TelefonNo]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[collection_Match_Telefon(0).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_112" Level="Info" Message="[str_WorkflowName+&quot;Telefon numarası bilgisi '&quot;+out_str_TelefonNo+&quot;' olarak tespit edildi.&quot;]" />
+                      <ui:Break sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Break_52" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan telefon numarası bulunamadı." sap:VirtualizedContainerService.HintSize="375.2,185.6" sap2010:WorkflowViewState.IdRef="Sequence_265">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_113" Level="Info" Message="[str_WorkflowName+&quot;Telefon numarası pattern eşleşmedi.&quot;]" />
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEach.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:ForEach>
+      </Sequence>
+      <Sequence DisplayName="Sequence : Doğum tarihi bilgisini özgeçmişten çıkar." sap:VirtualizedContainerService.HintSize="912.8,68.8" sap2010:WorkflowViewState.IdRef="Sequence_247">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" Name="index2" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="871.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_114" Level="Info" Message="[str_WorkflowName+&quot;Doğum tarihi bilgisi elde edilmeye çalışılıyor...&quot;]" />
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[index2]" DisplayName="For Each : strList_patterns_DogumTarihiPatterns" sap:VirtualizedContainerService.HintSize="871.2,824.8" sap2010:WorkflowViewState.IdRef="ForEach`1_60" Values="[strList_patterns_DogumTarihiPatterns]">
+          <ui:ForEach.Body>
+            <ActivityAction x:TypeArguments="x:String">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body : Pattern ile doğum tarihi belgesi elde etmeye çalış." sap:VirtualizedContainerService.HintSize="836,690.4" sap2010:WorkflowViewState.IdRef="Sequence_246">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="isDogumTarihiRegex" />
+                  <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="collection_Match_DogumTarihi" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Matches BuilderPattern="([0-9]{2})(\s)(\w+|\d{2})(\s)(\d{4})" DisplayName="Matches Dogum Tarihi Regex" sap:VirtualizedContainerService.HintSize="794.4,60" sap2010:WorkflowViewState.IdRef="Matches_46" Input="[in_str_OzgecmisIcerik]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;([0-9]{2})(\\s)(\\w+|\\d{2})(\\s)(\\d{4})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[item]" RegexOption="None" Result="[collection_Match_DogumTarihi]" />
+                <If Condition="[collection_Match_DogumTarihi.Any]" DisplayName="If : Doğum tarihi eşleşmesi bulundu mu?" sap:VirtualizedContainerService.HintSize="794.4,497.6" sap2010:WorkflowViewState.IdRef="If_91">
+                  <If.Then>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan doğum tarihi bulundu." sap:VirtualizedContainerService.HintSize="375.2,348" sap2010:WorkflowViewState.IdRef="Sequence_266">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="Assign : str_TelefonNo" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_250">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[out_str_DogumTarihi]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[collection_Match_DogumTarihi(0).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_115" Level="Info" Message="[str_WorkflowName+&quot;Doğum tarihi bilgisi '&quot;+out_str_DogumTarihi+&quot;' olarak tespit edildi.&quot;]" />
+                      <ui:Break sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Break_53" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Sequence : Pattern'a uyan doğum tarihi bulunamadı." sap:VirtualizedContainerService.HintSize="375.2,185.6" sap2010:WorkflowViewState.IdRef="Sequence_267">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_116" Level="Info" Message="[str_WorkflowName+&quot;Doğum tarihi pattern eşleşmedi.&quot;]" />
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEach.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:ForEach>
+      </Sequence>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="912.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_117" Level="Info" Message="[str_WorkflowName+&quot;Perform sequence sonlandı.&quot;]" />
+    </Sequence>
+    <Sequence DisplayName="Sequence : After Perform" sap:VirtualizedContainerService.HintSize="954.4,185.6" sap2010:WorkflowViewState.IdRef="Sequence_233">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_118" Level="Info" Message="[str_WorkflowName+&quot;Workflow sonlandı.&quot;]" />
+    </Sequence>
+  </Sequence>
+</Activity>
